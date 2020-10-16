@@ -5,9 +5,9 @@ A simple [Ditto](https://github.com/phuongtran7/Ditto) client.
 
 ## Build
 
-1. Clone [Eclipse Paho MQTT Rust Client](https://github.com/phuongtran7/ditto_client).
+1. Clone [Eclipse Paho MQTT Rust Client](https://github.com/eclipse/paho.mqtt.rust).
 2. Change the `path` of Paho MQTT in `Cargo.toml`.
-3. Build `ditto_client` with `cargo build`.
+3. Build with `cargo build`.
 
 ## Usage
 
