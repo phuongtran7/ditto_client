@@ -1,0 +1,16 @@
+[package]
+name = "ditto_client"
+version = "0.1.0"
+authors = ["Phuong"]
+edition = "2018"
+
+[dependencies]
+flexbuffers = "0.1.1"
+futures = "0.3.6"
+log = "0.4.0"
+env_logger = "0.7.1"
+
+[dependencies.paho-mqtt]
+path = "D:/Projects/paho.mqtt.rust"
+default-features = false
+features = ["bundled"]
