@@ -206,6 +206,8 @@ fn main() {
 
     io::stdin().read_line(&mut String::new()).unwrap();
 
-    cli.unsubscribe(topic);
-    cli.disconnect(None);
+    if cli.is_connected() {
+        cli.unsubscribe(topic);
+        cli.disconnect(None);    
+    }
 }
