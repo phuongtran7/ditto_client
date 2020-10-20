@@ -3,10 +3,10 @@
 
 extern crate flexbuffers;
 
+use clap::{App, Arg};
 use flexbuffers::Reader;
 use futures::executor::block_on;
 use std::{io, process, time::Duration};
-use clap::{App, Arg};
 
 use paho_mqtt as mqtt;
 
@@ -17,7 +17,6 @@ fn parse_data(data: &[u8]) {
     let keys = buf_map.keys_vector();
 
     for num in 0..keys.len() {
-        
         let key_name = keys.idx(num).as_str();
         let field = buf_map.idx(key_name);
 
@@ -144,21 +143,25 @@ fn parse_data(data: &[u8]) {
 
 fn main() {
     let matches = App::new("Ditto Client")
-    .version("0.1.0")
-    .about("Receive and parse Ditto output")
-    .arg(Arg::new("address")
-        .short('a')
-        .long("address")
-        .about("Sets the MQTT broker address")
-        .takes_value(true)
-        .default_value("127.0.0.1"))
-    .arg(Arg::new("topic")
-        .short('t')
-        .long("topic")
-        .about("Sets the topic to subscribe")
-        .takes_value(true)
-        .default_value("TestTopic"))
-    .get_matches();
+        .version("0.1.0")
+        .about("Receive and parse Ditto output")
+        .arg(
+            Arg::new("address")
+                .short('a')
+                .long("address")
+                .about("Sets the MQTT broker address")
+                .takes_value(true)
+                .default_value("127.0.0.1"),
+        )
+        .arg(
+            Arg::new("topic")
+                .short('t')
+                .long("topic")
+                .about("Sets the topic to subscribe")
+                .takes_value(true)
+                .default_value("TestTopic"),
+        )
+        .get_matches();
 
     let address = matches.value_of("address").unwrap();
     let topic = matches.value_of("topic").unwrap();
@@ -208,6 +211,6 @@ fn main() {
 
     if cli.is_connected() {
         cli.unsubscribe(topic);
-        cli.disconnect(None);    
+        cli.disconnect(None);
     }
 }
